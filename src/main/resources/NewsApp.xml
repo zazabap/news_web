@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="com.spring.newschart.dataSource">
+        <property name="jdbcUrl" value="jdbc:mysql://localhost/test" />
+        <property name="username" value="user" />
+        <property name="password" value="P@ssW0rd" />
+        <property name="maximumPoolSize" value="10" />
+        <property name="autoCommit" value="true" />
+    </bean>
+
+    <bean id="user1" class="com.spring.newschart.User">
+        <constructor-arg name="userName" value="Lizbeth"/>
+        <constructor-arg name="password" value="jar"/>
+        <constructor-arg name="email" value="lizjar@caltech.edu"/>
+        <constructor-arg name="phone" value="3482047850"/>
+    </bean>
+
+    <bean id="news1" class="com.spring.newschart.News">
+        <constructor-arg name="title" value="JiangNan"/>
+        <constructor-arg name="author" value="Liz"/>
+        <constructor-arg name="content" value="US"/>
+    </bean>
+
+    <bean id="userService" class="com.spring.newschart.userService">
+        <property name="mailService" ref="mailService" />
+    </bean>
+    <bean id="mailService" class="com.spring.newschart.MailService"/>
+
+
+    <bean class="com.spring.newschart.NewsService">
+        <property name="commentService" ref="commentService" />
+    </bean>
+
+    <bean id="commentService" class="com.spring.newschart.CommentService"/>
+
+    <bean class="com.spring.newschart.NewsService">
+        <property name="adService" ref="adService" />
+    </bean>
+
+    <bean id="adService" class="com.spring.newschart.AdService"/>
+
+
+</beans>
